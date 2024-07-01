@@ -38,14 +38,16 @@ public class AdminHouseController {
 	@GetMapping
 	public String index(Model model, @PageableDefault(page = 0, size = 10, sort = "id", direction = Direction.ASC) Pageable pageable, @RequestParam(name = "keyword", required = false) String keyword) {
 		Page<House> housePage;
-		
+		System.out.println();
 		if (keyword != null && !keyword.isEmpty()) {
 			housePage = houseRepository.findByNameLike("%" + keyword + "%", pageable);
 		} else {
 			housePage = houseRepository.findAll(pageable);
 		}
-		
+		// コントローラからビューにデータを渡している
+		// モデルにデータを追加
 		model.addAttribute("housePage", housePage);
+		// 検索キーワードをモデルに追加
 		model.addAttribute("keyword", keyword);
 		
 		return "admin/houses/index";
