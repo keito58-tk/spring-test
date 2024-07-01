@@ -18,7 +18,7 @@ public class StripeService {
 	// セッションを作成し、Stripeに必要な情報を返す
 	public String createStripeSession(String houseName, ReservationRegisterForm reservationRegisterForm, HttpServletRequest httpServletRequest) {
 		Stripe.apiKey = stripeApiKey;
-		String requestUrl = new String(httpServletRequest.getRequestURI());
+		String requestUrl = new String(httpServletRequest.getRequestURL());
 		SessionCreateParams params = 
 			SessionCreateParams.builder()
 				.addPaymentMethodType(SessionCreateParams.PaymentMethodType.CARD)
